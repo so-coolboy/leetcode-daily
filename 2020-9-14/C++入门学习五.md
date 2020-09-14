@@ -34,11 +34,56 @@ Lambda 表达式本质上与函数声明非常类似。Lambda 表达式具体形
 [](int x, int y) -> int { int z = x + y; return z + x; }
 ```
 在Lambda表达式内可以访问当前作用域的变量，这是Lambda表达式的闭包（Closure）行为。 与JavaScript闭包不同，C++变量传递有传值和传引用的区别。可以通过前面的[]来指定：
-
+```
 []      // 沒有定义任何变量。使用未定义变量会引发错误。
 [x, &y] // x以传值方式传入（默认），y以引用方式传入。
 [&]     // 任何被使用到的外部变量都隐式地以引用方式加以引用。
 [=]     // 任何被使用到的外部变量都隐式地以传值方式加以引用。
 [&, x]  // x显式地以传值方式加以引用。其余变量以引用方式加以引用。
 [=, &z] // z显式地以引用方式加以引用。其余变量以传值方式加以引用。
+```
+
+### C++数学运算 ###
+C++ 内置了丰富的数学函数，可对各种数字进行运算。为了利用这些函数，您需要引用数学头文件 <cmath>。
+double cos(double);该函数返回弧度角（double 型）的余弦。
+double sin(double);该函数返回弧度角（double 型）的正弦。
+double tan(double);该函数返回弧度角（double 型）的正切。
+double log(double);该函数返回参数的自然对数。
+double pow(double, double);假设第一个参数为 x，第二个参数为 y，则该函数返回 x 的 y 次方。
+double hypot(double, double);该函数返回两个参数的平方总和的平方根，也就是说，参数为一个直角三角形的两个直角边，函数会返回斜边的长度。
+double sqrt(double);该函数返回参数的平方根。
+int abs(int);该函数返回整数的绝对值。
+double fabs(double);该函数返回任意一个浮点数的绝对值。
+double floor(double);该函数返回一个小于或等于传入参数的最大整数。
+  
+
+### 生成随机数 ###
+在许多情况下，需要生成随机数。关于随机数生成器，有两个相关的函数。一个是 rand()，该函数只返回一个伪随机数。生成随机数之前必须先调用 srand() 函数。
+下面是一个关于生成随机数的简单实例。实例中使用了 time() 函数来获取系统时间的秒数，通过调用 rand() 函数来生成随机数：
+```
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+ 
+using namespace std;
+ 
+int main ()
+{
+   int i,j;
+ 
+   // 设置种子
+   srand( (unsigned)time( NULL ) );
+ 
+   /* 生成 10 个随机数 */
+   for( i = 0; i < 10; i++ )
+   {
+      // 生成实际的随机数
+      j= rand();
+      cout <<"随机数： " << j << endl;
+   }
+ 
+   return 0;
+}
+```
+
 
