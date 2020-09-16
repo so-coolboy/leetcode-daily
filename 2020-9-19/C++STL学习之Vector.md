@@ -30,3 +30,57 @@ vector 同 array 一样可以很方便的通过索引值直接存取任何一个
 * rend 将vector反转构的结束指针返回(其实就是原来的begin-1)
 * empty 判断vector是否为空
 * swap 与另一个vector交换数据
+
+### 基本用法 ###
+```
+#include < vector> 
+using namespace std;
+```
+排序举例：
+```
+#include <string.h>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+ 
+int main()
+{
+    vector<int>obj;
+ 
+    obj.push_back(1);
+    obj.push_back(3);
+    obj.push_back(0);
+ 
+    sort(obj.begin(),obj.end());//从小到大
+ 
+    cout<<"从小到大:"<<endl;
+    for(int i=0;i<obj.size();i++)
+    {
+        cout<<obj[i]<<",";  
+    } 
+ 
+    cout<<"\n"<<endl;
+ 
+    cout<<"从大到小:"<<endl;
+    reverse(obj.begin(),obj.end());//从大到小 
+    for(int i=0;i<obj.size();i++)
+    {
+        cout<<obj[i]<<",";
+    }
+    return 0;
+}
+```
+1.注意 sort 需要头文件 #include <algorithm>
+2.如果想 sort 来降序，可重写 sort
+```
+  bool compare(int a,int b) 
+{ 
+    return a< b; //升序排列，如果改为return a>b，则为降序 
+} 
+int a[20]={2,4,1,23,5,76,0,43,24,65},i; 
+for(i=0;i<20;i++) 
+    cout<< a[i]<< endl; 
+sort(a,a+20,compare);
+```
+
