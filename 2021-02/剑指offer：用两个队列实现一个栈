@@ -1,5 +1,4 @@
 原理参考书本，这里只放代码。
-# bigbig
 
 ```
 template<typename T> class CStack
